@@ -3,6 +3,7 @@
  * By Giuem.
  */
 error_reporting(E_ALL ^ E_WARNING ^ E_NOTICE);
+date_default_timezone_set('PRC');
 include 'config.php';
 require_once dirname(__FILE__).'/./function/core.php';
 require_once dirname(__FILE__).'/./function/robot.php';
