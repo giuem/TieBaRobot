@@ -11,6 +11,7 @@ require_once dirname(__FILE__).'/./function/core.php';
 <body>
 <!-- 请不要乱改源码 ，影响正常使用！  -->
 Designed by <a href="http://www.giuem.com">Giuem</a><br />
+<a href="https://github.com/giuem/TBRobot_Simple">开源地址</a><br />
 <form name="input" action="index.php" method="post">
 <input type="hidden" name="action" value="delete" />
 <input type="submit" value="清空记录"/>  
