@@ -14,8 +14,8 @@ if(defined('SAE_MYSQL_DB')) {
 // -------------- END SAE数据库设定 ------------------
 }else {
 // ------------------ 非SAE数据库设定 ------------------
-	$db_server = '';			// 数据库服务器地址
-	$db_port = '';				// 数据库端口
+	$db_server = 'localhost';			// 数据库服务器地址
+	$db_port = '3306';				// 数据库端口
 	$db_username = '';			// 数据库用户名
 	$db_password = '';			// 数据库密码
 	$db_name = '';				// 数据库名
