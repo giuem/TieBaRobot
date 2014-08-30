@@ -38,11 +38,11 @@ for($i=0;$i<2;$i++){
         //判断是否为楼中楼
         if($d['is_floor'] == 1){
 			$pid = getFloorPid($b,$d['thread_id'],$d['post_id']);
-			$content = '回复 '.$d['replyer']['name_show'].' :'.talk($d['content']);
+			$content = '回复 '.$d['replyer']['name_show'].' :'.talk($d['content'],$api);
 			$re = reply($bduss,$d['thread_id'],$pid,$content,$d['fname']);
             setLog('TID：'.$d['thread_id'].',状态：'.$re);
 		}else {
-            $content = talk($d['content']);
+            $content = talk($d['content'],$api);
 			$re = reply($bduss,$d['thread_id'],$d['post_id'],$content,$d['fname']);
 			setLog('TID：'.$d['thread_id'].',状态：'.$re);	
 		}
