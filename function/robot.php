@@ -17,12 +17,12 @@ function talk($content,$api) {
 		case 'xiaoji':
 			$re = xiaoji($content);
 			break;
-		case 'tuling':
-			$re = tuling($content);
-			break;
 		case 'xiaoi3':
+			$re = xiaoi3($content);
+			break;
+		case 'tuling':
 			$key = '';//填写key
-			$re = tulin($content,$key);
+			$re = tuling($content,$key);
 			break;
 		case 'simsimi3':
 			$re = simsimi3($content);
