@@ -113,10 +113,11 @@ function tuling($content,$key){
 			break;
 		//次数用完或者不能用了
 		case 40004:
-			$content = xiaoji($content);
+			$content = '今天累了，明天再聊吧';
 			break;
 		default:
-			$content = xiaoji($content);;
+			//$content = xiaoji($content);
+			$content = $re['text'];
 	}
 	return $content;
 }

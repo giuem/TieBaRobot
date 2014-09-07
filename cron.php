@@ -20,6 +20,8 @@ $lastpid = array(getSQLPid($type[0]),getSQLPid($type[1]));
 //判断数据库中是否记录PID
 if($lastpid[0] == '' and $lastpid[1] == ''){
     $nowpid = array(getLastPid($bduss,$type[0]),getLastPid($bduss,$type[1]));
+	if(!$nowpid[0]) $nowpid[0] = 0;
+    if(!$nowpid[1]) $nowpid[1] = 0;
 	$sql="INSERT INTO pid(reply,at) values ($nowpid[0],$nowpid[1])";
 	$conn->query($sql);
 	return ;
