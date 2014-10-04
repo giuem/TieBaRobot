@@ -85,7 +85,7 @@ switch($_GET['step']){
 		}
 		require SYSTEM_ROOT.'../lib/func.mysqli.php';
 		if($error_msg){
-			 showmsg($error_msg);
+			 showmsg($error_msg,0);
 			 return;
 		}
 		$config_content="<?php
@@ -95,12 +95,12 @@ define('DB_USERNAME','".DB_USERNAME."');
 define('DB_PASSWORD','".DB_PASSWORD."');
 define('DB_NAME','".DB_NAME."');";
 		if(file_put_contents($config_file,$config_content)<= 0){
-			showmsg('哎呀，无法写入文件！请手动配置config.php（sae环境请忽略本条消息）',1);
+			showmsg('<p>哎呀，无法写入文件！请手动配置config.php（sae环境请忽略本条消息）配置信息如下</p><pre>'.htmlspecialchars($config_content).'</pre>',1);		
 		}
 		$un = $_POST['un'];
 		$upwd = $_POST['upwd'];
 		if(!$un || !$upwd) {
-			showmsg('您输入的信息不完整');
+			showmsg('您输入的信息不完整',0);
 			return ;
 		}
 		$upwd = md5($upwd);
@@ -120,7 +120,7 @@ function check($c){
 }
 function showmsg($msg,$type=0){
 	$content = "<div class=\"am-alert am-alert-danger\"><h4><i class=\"am-icon-warning\">Warning</h4></i>{$msg}</div>";
-	if ($type = 0) $content .='<button type="button" class="am-btn am-btn-primary" onclick="history.back();">&laquo; 返回</button>';
+	if ($type == 0) $content .='<button type="button" class="am-btn am-btn-primary" onclick="history.back();">&laquo; 返回</button>';
 	echo $content;
 }
 

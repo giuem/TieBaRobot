@@ -4,12 +4,6 @@ function talk($content,$name,$api,$apikey='') {
 	$content = str_ireplace("@{$name}",'',$content);
 	$content = str_ireplace("回复 {$name} :",'',$content);
 	$content = urlencode($content);
-<<<<<<< HEAD:lib/api.php
-=======
-	if($content == ''){
-		return '您好，贴吧小冰很高兴为您服务';
-	}
->>>>>>> origin/master:lib/api.php
 	switch ($api){
 		case 'xiaoji':
 			$re = xiaoji($content);
@@ -28,19 +22,8 @@ function talk($content,$name,$api,$apikey='') {
 			break;
 		default:
 			$re = xiaoji($content);
-			
 	}
-<<<<<<< HEAD:lib/api.php
 	return $re;
-=======
-	
-	// 有时候返回内容为空 就要有一个默认回复
-	if($re == ''){
-		return 'Hi!';
-	}else {
-		return $re;
-	}
->>>>>>> origin/master:lib/api.php
 }
 function xiaoji($content){
 	if(preg_match('/\[问：(.*?) 答：(.*?)\]/',$content,$teach) == 1){

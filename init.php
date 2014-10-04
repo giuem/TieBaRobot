@@ -1,5 +1,6 @@
 <?php
-error_reporting(E_ALL ^ E_NOTICE);
+error_reporting(NULL);
+ini_set('display_errors','Off');
 define('IS_GIUEM', true);
 define('SYSTEM_ROOT', dirname(__FILE__).'/');
 date_default_timezone_set('PRC');

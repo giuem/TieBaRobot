@@ -72,7 +72,7 @@ function del_log(){
 	return $res;
 }
 function updata(){
-	if (md5_file(SYSTEM_ROOT.'./templates/footer.php')!='532ea0f1633a61bf477a7fc322b2f42f') die;
+	if (md5_file(SYSTEM_ROOT.'./templates/footer.php')!='90a817a741148f0f84abfa890ba600d9') die;
 }
 function get_robot_list(){
 	global $m;

@@ -1,6 +1,6 @@
 <?php if (!defined('IS_GIUEM')) exit();?>
 <div class="am-animation-shake">
-       <p class="am-text-sm">Design by <a href="http://www.giuem.com">Gieum</a>© Copyright 2014 <span class="am-icon-github"><a href="" target="_black"> Github</a></span></p>
+       <p class="am-text-sm">Design by <a href="http://www.giuem.com">Gieum</a>© Copyright 2014 <span class="am-icon-github"><a href="https://github.com/giuem/TieBaRobot" target="_black"> Github</a></span></p>
     </div> 
 </div>
     </div>
