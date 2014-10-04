@@ -149,7 +149,6 @@ class tieba{
 						continue;
 					}
 				}
-				updata();
 				if($k['is_floor'] == 1){
 					$pid = $this->floorpid($k['thread_id'], $k['post_id']);
 					$content = "回复 {$k['replyer']['name_show']} :";
