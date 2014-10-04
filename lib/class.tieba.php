@@ -146,7 +146,6 @@ class tieba{
 					if($this->kwdata['user_info']['is_sign_in']==0){
 						$this->likekw($k['fname']);
 						set_log($this->signkw($k['fname']));
-						continue;
 					}
 				}
 				if($k['is_floor'] == 1){
