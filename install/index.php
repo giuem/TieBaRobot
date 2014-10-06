@@ -97,7 +97,7 @@ define('DB_NAME','".DB_NAME."');";
 		if(file_put_contents($config_file,$config_content)<= 0){
 			showmsg('<p>哎呀，无法写入文件！请手动配置config.php（sae环境请忽略本条消息）配置信息如下</p><pre>'.htmlspecialchars($config_content).'</pre>',1);		
 		}
-		$un = $_POST['un'];
+		$un = addslashes($_POST['un']);
 		$upwd = $_POST['upwd'];
 		if(!$un || !$upwd) {
 			showmsg('您输入的信息不完整',0);
