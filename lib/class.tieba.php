@@ -141,7 +141,7 @@ class tieba{
 			$this->rand_bduss();
 			$this->getkwdata($k['fname']);
 			if ($db_pid == $k['post_id']) break;
-			if (@stristr($k['replyer']['name_show'],$this->setting[3])===false && @stristr($k['fname'],$this->setting[4])===false){
+			if (@stristr($this->setting[3],$k['replyer']['name_show'])===false && @stristr($this->setting[4],$k['fname'])===false){
 				if ($this->setting[5]==1){
 					if($this->kwdata['user_info']['is_sign_in']==0){
 						$this->likekw($k['fname']);
