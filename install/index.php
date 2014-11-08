@@ -51,7 +51,7 @@ switch($_GET['step']){
 		break ;
 	case 2:
 		$content .='<form method="post" action="./?step=3" class="am-form am-form-horizontal">';
-		if (!defined('SAE_ACCESSKEY') && !getenv('OPENSHIFT_APP_NAME')){
+		if (!defined('SAE_ACCESSKEY')){
 			$content .='<div class="am-form-group"><label class="col-sm-4 am-form-label">数据库服务器地址:</label><div class="col-sm-5 col-end"><input type="text" name="db_server" value="localhost"></div></div>';
 			$content .='<div class="am-form-group"><label class="col-sm-4 am-form-label">数据库端口:</label><div class="col-sm-5 col-end"><input type="text" name="db_port" value="3306"></div></div>';
 			$content .='<div class="am-form-group"><label class="col-sm-4 am-form-label">数据库用户名:</label><div class="col-sm-5 col-end"><input type="text" name="db_username" ></div></div>';
