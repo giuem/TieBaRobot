@@ -70,12 +70,6 @@ switch($_GET['step']){
 			define('DB_USERNAME',SAE_MYSQL_USER);
 			define('DB_PASSWORD',SAE_MYSQL_PASS);
 			define('DB_NAME',SAE_MYSQL_DB);
-		}elseif (getenv('OPENSHIFT_APP_NAME')){
-			define('DB_SERVER',getenv('OPENSHIFT_MYSQL_DB_HOST'));
-			define('DB_POET',intval(getenv('OPENSHIFT_MYSQL_DB_PORT')));
-			define('DB_USERNAME',getenv('OPENSHIFT_MYSQL_DB_USERNAME'));
-			define('DB_PASSWORD',getenv('OPENSHIFT_MYSQL_DB_PASSWORD'));
-			define('DB_NAME',getenv('OPENSHIFT_APP_NAME'));
 		}else{
 			define('DB_SERVER',$_POST['db_server']);
 			define('DB_POET',$_POST['db_port']);
@@ -94,7 +88,7 @@ define('DB_POET',".DB_POET.");
 define('DB_USERNAME','".DB_USERNAME."');
 define('DB_PASSWORD','".DB_PASSWORD."');
 define('DB_NAME','".DB_NAME."');";
-		if(file_put_contents($config_file,$config_content)<= 0){
+		if(file_put_contents($config_file,$config_content)<= 0 && !defined('SAE_ACCESSKEY')){
 			showmsg('<p>哎呀，无法写入文件！请手动配置config.php（sae环境请忽略本条消息）配置信息如下</p><pre>'.htmlspecialchars($config_content).'</pre>',1);		
 		}
 		$un = addslashes($_POST['un']);
