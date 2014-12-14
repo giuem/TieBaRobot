@@ -155,7 +155,7 @@ class tieba{
 					$pid = $k['post_id'];
 				}
 				
-				$content .= talk($k['content'],$this->un,$this->setting[1],$this->setting[2]).$this->setting[6];
+				$content = talk($k['content'],$this->un,$this->setting[1],$this->setting[2]).$this->setting[6];
 				$res = $this->reply($k['thread_id'], $pid, $k['fname'], $content);
 				echo "在{$k['fname']}吧贴号{$k['thread_id']}{$res}";
 				set_log("在{$k['fname']}吧贴号{$k['thread_id']}{$res}");
