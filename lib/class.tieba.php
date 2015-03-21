@@ -1,14 +1,17 @@
 <?php
 if (!defined('IS_GIUEM')) exit();
+/**
+  * 坑爹的代码迟早被我重构！
+  */
 class tieba{
-	
+
 	private  $bduss = array();
 	private  $un = '';
 	private  $setting = '';
 	private  $i = '0';
 	private  $type = array('at','reply');
 	private  $kwdata = array();
-	
+
 	public function __construct(){
 		$this->setting = get_setting();
 		$this->bduss = get_robot_bduss();
@@ -20,7 +23,7 @@ class tieba{
 		$i = rand(0,count($this->bduss)-1);
 		$this->i = $i;
 	}
-	
+
 	public static function getun($bduss){
 		$re = fetch('http://tieba.baidu.com/f/user/json_userinfo','BDUSS='.$bduss,null,array('User-Agent: Mozilla/5.0 (Windows NT 6.3; rv:29.0) Gecko/20100101 Firefox/29.0','Connection: Keep-Alive'));
 		$re = iconv('GBK', 'UTF-8', $re);
@@ -70,25 +73,32 @@ class tieba{
 		$pid = $re['post']['id'];
 		return $pid;
 	}
-	
+
 	private function reply($tid,$pid,$kw,$content){
 		$postdata = array (
-				'BDUSS='.$this->bduss[$this->i],
-				'_client_id=wappc_136'.random(10).'_'.random(3),
-				'_client_type='.rand(1,4),
-				'_client_version=5.0.0',
-				'_phone_imei=642b43b58d21b7a5814e1fd41b08e2a6',
-				'anonymous=0',
-				'content='.$content,
-				'fid='.$this->kwdata['forum_info']['forum_info']['forum_id'],
-				'kw='.$kw,
-				'net_type=3',
-				'quote_id='.$pid,
-				'tbs='.$this->gettbs($this->i),
-				'tid='.$tid,
+			'BDUSS='.$this->bduss[$this->i],
+    		'_client_id='.'wappc_136'.random(10).'_'.random(3),
+    		'_client_type='. 2,
+    		'_client_version=' . '6.5.2',
+    		'_phone_imei=' . md5($this->bduss[$this->i]),
+			'anonymous=' . 1,
+			'content=' . $content,
+			'fid=' . $this->kwdata['forum_info']['forum_info']['forum_id'],
+			'from=' . '1382d',
+			'is_ad=' . '0',
+			'kw=' . $kw,
+			'model=' .'SCH-I959',
+			'new_vcode=' .'1',
+			'quote_id=' . $pid,
+			'tbs='. $this->gettbs($this->i),
+			'tid='.$tid,
+			'vcode_tag='.'11'
 		);
 		$postdata=self::getsign($postdata);
-		$re = fetch('http://c.tieba.baidu.com/c/c/post/add',null,$postdata,array('Content-Type: application/x-www-form-urlencoded'));
+		$re = fetch('http://c.tieba.baidu.com/c/c/post/add',null,$postdata,array(
+        	'User-Agent: bdtb for Android 6.5.2',
+            'Content-Type: application/x-www-form-urlencoded',
+        ));
 		$re = json_decode($re,true);
 		if($re['error_code'] == 0){
 			return '回帖成功';
@@ -118,10 +128,10 @@ class tieba{
 				'tbs='.$this->gettbs($this->i),
 		);
 		$postdata = self::getsign($postdata);
-		$re = json_decode(fetch('http://c.tieba.baidu.com/c/c/forum/sign',null,$postdata,array('Content-Type: application/x-www-form-urlencoded')));
+		$re = json_decode(fetch('http://c.tieba.baidu.com/c/c/forum/sign',null,$postdata,array('Content-Type: application/x-www-form-urlencoded')),1);
 		if ($re['user_info'])
 			return '在'.$kw.'吧签到成功，经验值上升'.$re['sign_bonus_point'];
-		else 
+		else
 			return '在'.$kw.'吧签到失败，错误代码：'.$re['error_code'].' '.$re['error_msg'];
 	}
 	private function gettbs($i){
@@ -132,12 +142,13 @@ class tieba{
 		$postdata=implode("&", $postdata)."&sign=".md5(implode('', $postdata).'tiebaclient!!!');
 		return $postdata;
 	}
-	
+
 	private function cron_type($type){
 		$msg = self::getmsg($this->bduss[0],$type);
 		$db_pid = get_pid($type);
 		set_pid($msg[0]['post_id'], $type);
 		foreach ($msg as $k){
+			$content = '';
 			$this->rand_bduss();
 			$this->getkwdata($k['fname']);
 			if ($db_pid == $k['post_id']) break;
@@ -154,14 +165,15 @@ class tieba{
 				}else{
 					$pid = $k['post_id'];
 				}
-				
-				$content = talk($k['content'],$this->un,$this->setting[1],$this->setting[2]).$this->setting[6];
+
+				$content .= talk($k['content'],$this->un,$this->setting[1],$this->setting[2]).$this->setting[6];
 				$res = $this->reply($k['thread_id'], $pid, $k['fname'], $content);
 				echo "在{$k['fname']}吧贴号{$k['thread_id']}{$res}";
 				set_log("在{$k['fname']}吧贴号{$k['thread_id']}{$res}");
-				sleep(rand(3, 5));
+				// 回帖间隔
+				sleep(3);
 			}
-		}		
+		}
 	}
 	private function cron(){
 		for ($i=0;$i<2;$i++){
