@@ -9,10 +9,10 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <link rel="stylesheet" href="http://cdn.staticfile.org/amazeui/1.0.0-beta2/css/amazeui.basic.min.css"/>
+  <link rel="stylesheet" href="//cdn.css.net/libs/amazeui/1.0.0-beta2/css/amazeui.basic.min.css"/>
   <link rel="stylesheet" href="./templates/css/main.css"/>
   <script src="./templates/js/zepto.min.js"></script>
-  <script src="http://cdn.staticfile.org/amazeui/1.0.0-beta2/js/amazeui.min.js"></script>
+  <script src="//cdn.css.net/libs/amazeui/1.0.0-beta2/js/amazeui.min.js"></script>
 </head>
 <body>
 <hr class="am-article-divider"/>
