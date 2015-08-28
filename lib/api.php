@@ -4,6 +4,7 @@ function talk($content,$name,$api,$apikey='') {
 	$content = str_ireplace("@{$name}",'',$content);
 	$content = str_ireplace("回复 {$name} :",'',$content);
 	$content = urlencode($content);
+	$re = '';
 	switch ($api){
 		case 'xiaoji':
 			$re = xiaoji($content);
@@ -91,7 +92,7 @@ function simsimi3($content){
 }
 function simsimi($content){
     $ch = curl_init();
-    curl_setopt($ch,CURLOPT_URL,'http://www.simsimi.com/talk.htm');
+    curl_setopt($ch,CURLOPT_URL,'http://www.simsimi.com/talk/');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_HEADER,1);
     curl_setopt($ch, CURLOPT_NOBODY, false);
@@ -99,9 +100,13 @@ function simsimi($content){
     preg_match_all('/Set-Cookie: (.+)=(.+)$/m', $rs, $regs);
     foreach($regs[1] as $i=>$k);
     $cc=str_replace(' Path','' ,$k);
-    $cc='simsimi_uid='.rand().';'.$cc;
-    $re = url_get('http://www.simsimi.com/func/reqN?lc=ch&ft=0.0&req='.urlencode($content).'&fl=http%3A%2F%2Fwww.simsimi.com%2Ftalk.htm&reqType=','',$cc);
+    $uid = rand();
+    $cc='simsimi_uid='.$uid.';'.$cc;
+    $re = fetch('http://www.simsimi.com/requestChat?lc=ch&ft=0.0&req='.$content.'&uid='.$uid,$cc);
     $re = json_decode($re,true);
-    return $re['sentence_resp'];
+    $re = $re['res'];
+    if(stristr($re,'I HAVE NO RESPONSE'))
+        $re = '你在说啥，我听不懂';
+    return $re;
 }
 /*PHP END*/
