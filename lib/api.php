@@ -1,8 +1,7 @@
 <?php
 if (!defined('IS_GIUEM')) exit();
 function talk($content,$name,$api,$apikey='') {
-	$content = str_ireplace("@{$name}",'',$content);
-	$content = str_ireplace("回复 {$name} :",'',$content);
+	$content = preg_replace("/@{$name}\s*?|回复(\s|@)*?{$name}\s*?(:|：)/i",'',$content);
 	$content = urlencode($content);
 	$re = '';
 	switch ($api){
