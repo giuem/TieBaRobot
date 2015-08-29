@@ -25,6 +25,7 @@ function fetch($url,$cookie=null,$postdata=null,$header=array()){
 	if (!is_null($cookie)) curl_setopt($ch, CURLOPT_COOKIE,$cookie);
 	if (!empty($header)) curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
 	//curl_setopt($ch, CURLOPT_HEADER, 0);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($ch, CURLOPT_HEADER, 0);
 	curl_setopt($ch, CURLOPT_TIMEOUT, 20);

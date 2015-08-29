@@ -20,10 +20,20 @@ function talk($content,$name,$api,$apikey='') {
 		case 'simsimi':
 			$re = simsimi($content);
 			break;
+		case 'baidurobot':
+			$re = baidurobot($content,$apikey);
+			break;
 		default:
 			$re = xiaoji($content);
 	}
 	return $re;
+}
+function baidurobot($content,$bduss){
+	$cookies = "BDUSS={$bduss};";
+	$re = fetch('https://sp0.baidu.com/yLsHczq6KgQFm2e88IuM_a/s?sample_name=bear_brain&request_query='.$content .'&bear_type=2',$cookies);
+	$re = json_decode($re,1);
+	$answer = json_decode($re['result_list'][0]['result_content'],1);
+	return $answer['answer'];
 }
 function xiaoji($content){
 	if(preg_match('/\[问：(.*?) 答：(.*?)\]/',$content,$teach) == 1){

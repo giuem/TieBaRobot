@@ -12,16 +12,17 @@ $setting=get_setting();
       <label>API</label>
       <select name="api">
         <option value="xiaoji" <?php if($setting[1]=='xiaoji') echo 'selected="selected"';?>>小鸡</option>
-        <option value="tuling" <?php if($setting[1]=='tuling') echo 'selected="selected"';?>>图灵</option>
+        <option value="tuling" <?php if($setting[1]=='tuling') echo 'selected="selected"';?>>图灵（需要Key）</option>
         <option value="simsimi" <?php if($setting[1]=='simsimi') echo 'selected="selected"';?>>simsimi</option>
         <option value="simsimi3" <?php if($setting[1]=='simsimi3') echo 'selected="selected"';?>>第三方的simsimi</option>
+        <option value="baidurobot" <?php if($setting[1]=='baidurobot') echo 'selected="selected"';?>>百小度API（需要BDUSS）</option>
       </select>
       <span class="am-form-caret"></span>
     </div>
 
     <div class="am-form-group">
       <label>APIKey</label>
-      <input type="text" name="apikey" placeholder="图灵专用" value="<?php echo $setting[2];?>">
+      <input type="text" name="apikey" placeholder="API 附加参数" value="<?php echo $setting[2];?>">
     </div>
 
     <div class="am-form-group">
