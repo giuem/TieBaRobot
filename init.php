@@ -8,9 +8,10 @@ require SYSTEM_ROOT.'/lib/commom.php';
 require SYSTEM_ROOT.'/lib/ui.php';
 require SYSTEM_ROOT.'/lib/api.php';
 require SYSTEM_ROOT.'/lib/func.mysqli.php';
-
+/*
 if (!file_get_contents(SYSTEM_ROOT.'config.php')) {
     // 检测是否已安装
     header('Location: ./install/');
 }
+*/
 /*PHP END*/
