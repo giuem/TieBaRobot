@@ -15,6 +15,8 @@ class tieba{
 	public function __construct(){
 		$this->setting = get_setting();
 		$this->bduss = get_robot_bduss();
+		// 黑名单加入小号，防止重复回复
+		$this->setting[3] .= get_robot_name();
 		$this->un = self::getun($this->bduss[0]);
 		$this->cron();
 

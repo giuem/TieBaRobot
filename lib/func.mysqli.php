@@ -87,6 +87,16 @@ function get_robot_list(){
 	}
 	return $robot_list;
 }
+function get_robot_name(){
+	global $m;
+	$res = $m->query("SELECT name FROM robot");
+	if($res){
+		while ($row = $res->fetch_row()){
+			$name = $row[0].'|';
+		}
+		return $name;
+	}
+}
 function get_robot_bduss(){
 	global $m;
 	$res = $m->query("SELECT bduss FROM robot");
