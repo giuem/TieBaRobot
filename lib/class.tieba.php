@@ -27,10 +27,12 @@ class tieba{
 	}
 
 	public static function getun($bduss){
-		$re = fetch('http://tieba.baidu.com/f/user/json_userinfo','BDUSS='.$bduss,null,array('User-Agent: Mozilla/5.0 (Windows NT 6.3; rv:29.0) Gecko/20100101 Firefox/29.0','Connection: Keep-Alive'));
-		$re = iconv('GBK', 'UTF-8', $re);
-		$re = json_decode($re,true);
-		return $re['data']['user_name_show'];
+		$re = fetch('http://wapp.baidu.com/','BDUSS='.$bduss,null,array('User-Agent: Mozilla/5.0 (Windows NT 6.3; rv:29.0) Gecko/20100101 Firefox/29.0','Connection: Keep-Alive'));
+		$name = '';
+		if (preg_match('/i?un=(.*?)">/', $re, $match)) {
+			$name = urldecode($match[1]);
+		}
+		return $name;
 	}
 	public static function islogin($bduss){
 		$re=json_decode(fetch('http://tieba.baidu.com/dc/common/tbs','BDUSS='.$bduss),true);
