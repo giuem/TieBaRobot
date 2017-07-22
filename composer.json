@@ -1,0 +1,26 @@
+{
+  "name": "giuem/TiebaRobot",
+  "description": "tieba robot",
+  "minimum-stability": "dev",
+  "prefer-stable" : true,
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Giuem",
+      "email": "i@giuem.com"
+    }
+  ],
+  "require": {
+    "slim/slim": "^3.8",
+    "guzzlehttp/guzzle": "^6.2",
+    "illuminate/database": "^5.4",
+    "nesbot/carbon": "^1.22",
+    "vlucas/phpdotenv": "^2.4",
+    "ramsey/uuid": "^3.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "": "app/"
+    }
+  }
+}
