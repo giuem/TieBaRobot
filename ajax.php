@@ -16,9 +16,12 @@ if ($_GET['do']=='addrobot'){
 	$name = tieba::getun($_GET['bduss']);
 	if (tieba::islogin($_GET['bduss'])===false){
 		echo '无效的BDUSS';
-	}elseif (empty($name)){
+	}/*elseif (empty($name)){
 		echo '无法获取百度ID';
-	}else {
+	}*/else {
+		if (empty($name)) {
+			$name = "（空）";
+		}
 		$robot_list = get_robot_list();
 		if (empty($robot_list)){
 			set_pid(tieba::getpid($_GET['bduss'], 'reply'), 'reply');
